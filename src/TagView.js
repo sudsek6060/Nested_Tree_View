@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-// TagView component
+
 const TagView = ({ tag, onAddChild, onTagChange }) => {
   const [collapsed, setCollapsed] = useState(false);
 
@@ -31,9 +31,6 @@ const TagView = ({ tag, onAddChild, onTagChange }) => {
             />
             </div>
           )}
-          {/* {tag.children && (
-            <button onClick={() => onAddChild(tag)}>Add Child</button>
-          )} */}
           {tag.children &&
             tag.children.map((child) => (
               <TagView

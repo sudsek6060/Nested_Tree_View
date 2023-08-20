@@ -1,5 +1,5 @@
 import "./App.css";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import TagView from "./TagView";
 
 const initialState = {
@@ -22,14 +22,6 @@ const App = () => {
 
   const [items, setItems] = useState(initialState);
 
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("items"));
-    if (items) {
-      setItems(items);
-    }
-  }, [tree]);
-
- 
   const handleExport = useCallback(() => {
     setItems(tree);
     setIsExport(true);
@@ -53,12 +45,14 @@ const App = () => {
       parent.children = [{ name: `${parent.name}-child1`, data: "Data" }];
       setTree({ ...tree });
     }
-   
+    setIsExport(false)
+
   };
 
   const handleTagChange = (tag, newData) => {
     tag.data = newData;
     setTree({ ...tree });
+    setIsExport(false)
   };
 
   return (
